@@ -2,13 +2,13 @@ import { useCallback, useMemo } from 'react';
 import Item from '../Item';
 
 const List = ({ items = [], onItemClick }) => {
-  const handleItemClick = useCallback((item) => {
-    onItemClick && onItemClick(item);
-  }, [onItemClick]);
+  const handleItemClick = useCallback((index) => {
+    onItemClick(index);
+  });
 
-  const map = useMemo(() => items.map((item) => {
+  const map = useMemo(() => items.map((item, index) => {
     return (
-      <Item key={item.id} item={item} onItemClick={handleItemClick} />
+      <Item key={index} item={item} onItemClick={() => handleItemClick(index)} index={index} />
     );
   }), [items, handleItemClick]);
 

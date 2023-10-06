@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 
-const Item = ({ item, onItemClick }) => {
+const Item = ({ item, onItemClick, index }) => {
   const handleClick = useCallback(() => {
-    onItemClick && onItemClick(item);
-  }, [item, onItemClick]);
+    onItemClick(index);
+  });
 
   return (
     <li>
-      <p>{item.name}</p>
+      <p>{item.name.title} {item.name.first} {item.name.last}</p>
       <button type="button" onClick={handleClick}>Ver detalhes</button>
     </li>
   );
